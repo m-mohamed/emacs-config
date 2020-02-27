@@ -50,6 +50,29 @@
 (ido-mode)                          ;; Enable ido
 (ido-everywhere 1)                  ;; Enable ido-mode everywhere
 
+(when (fboundp 'windmove-default-keybindings) ;; Uses Shit+Arrow to move between windows
+  (windmove-default-keybindings))
+
+;; ===================================
+;; Virtualenv setup for emacs
+;; ===================================
+
+(require 'virtualenvwrapper)
+
+;; Eshell-prompts-extras setup
+(with-eval-after-load "esh-opt"      
+  (autoload 'epe-theme-lambda "eshell-prompt-extras")
+  (setq eshell-highlight-prompt nil
+        eshell-prompt-function 'epe-theme-lambda))
+
+;; Eshell-prompts-extras virtualenv setup
+(with-eval-after-load "esh-opt"
+  (require 'virtualenvwrapper)
+  (venv-initialize-eshell)
+  (autoload 'epe-theme-lambda "eshell-prompt-extras")
+  (setq eshell-highlight-prompt nil
+        eshell-prompt-function 'epe-theme-lambda))
+
 ;; ====================================
 ;; Org-mode setup
 ;; ====================================
@@ -85,7 +108,9 @@
  '(custom-safe-themes
    (quote
     ("41c8c11f649ba2832347fe16fe85cf66dafe5213ff4d659182e25378f9cfc183" default)))
- '(package-selected-packages (quote (racket-mode material-theme better-defaults))))
+ '(package-selected-packages
+   (quote
+    (virtualenvwrapper eshell-prompt-extras racket-mode material-theme better-defaults))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
