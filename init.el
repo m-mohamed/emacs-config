@@ -51,8 +51,18 @@
 (ido-everywhere 1)                  ;; Enable ido-mode everywhere
 
 ;; ====================================
+;; Org-mode setup
+;; ====================================
+
+(require 'org)
+(define-key global-map "\C-c l" 'org-store-link)
+(define-key global-map "\C-c a" 'org-agenda)
+(setq org-log-done t)
+
+;; ====================================
 ;; Development Setup
 ;; ====================================
+
 ;; Enable elpy
 (elpy-enable)
 
