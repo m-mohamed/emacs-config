@@ -115,6 +115,10 @@
 (add-to-list 'auto-mode-alist '("\\.mustache\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.djhtml\\'" . web-mode))
 
+; enable neo-tree and toggle it to f8
+(require 'neotree)
+(global-set-key [f8] 'neotree-toggle)
+
 ;; User-Defined init.el ends here
 
 (custom-set-variables
@@ -127,7 +131,7 @@
     ("41c8c11f649ba2832347fe16fe85cf66dafe5213ff4d659182e25378f9cfc183" default)))
  '(package-selected-packages
    (quote
-    (web-mode virtualenvwrapper eshell-prompt-extras racket-mode material-theme better-defaults))))
+    (markdown-mode neotree web-mode virtualenvwrapper eshell-prompt-extras racket-mode material-theme better-defaults))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
