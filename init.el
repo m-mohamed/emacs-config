@@ -38,6 +38,7 @@
             (package-install package)))
       myPackages)
 
+
 ;; ===================================
 ;; Basic Customization
 ;; ===================================
@@ -45,6 +46,7 @@
 (setq inhibit-startup-message t)    ;; Hide the startup message
 (load-theme 'darcula t)             ;; Load material theme
 (global-linum-mode t)               ;; Enable line numbers globally
+(add-hook 'pdf-view-mode-hook (lambda() (linum-mode -1))) ;; disable for pdfs
 (setq ring-bell-function 'ignore )  ;; silent bell on mistakes
 (setq delete-old-versions -1 )      ;; delete excess backups silently
 (ido-mode)                          ;; Enable ido
@@ -84,6 +86,22 @@
                              "~/org/school.org" 
                              "~/org/home.org"))
 
+;; set up flyspell
+(dolist (hook '(text-mode-hook org-mode-hook))
+  (add-hook hook (lambda () (flyspell-mode 1))))
+
+;; Get flyspell to pick up 2 finger clicks (mac)
+(eval-after-load "flyspell"
+  '(progn
+     (define-key flyspell-mouse-map [down-mouse-3] #'flyspell-correct-word)
+     (define-key flyspell-mouse-map [mouse-3] #'undefined)))
+
+;; org python code blocks
+(org-babel-do-load-languages
+ 'org-babel-load-languages
+ '((python . t)))
+
+
 ;; ====================================
 ;; Development Setup
 ;; ====================================
@@ -119,6 +137,9 @@
 (require 'neotree)
 (global-set-key [f8] 'neotree-toggle)
 
+;; auto close bracket insertion. New in emacs 24
+(electric-pair-mode 1)
+
 ;; User-Defined init.el ends here
 
 (custom-set-variables
@@ -131,7 +152,7 @@
     ("41c8c11f649ba2832347fe16fe85cf66dafe5213ff4d659182e25378f9cfc183" default)))
  '(package-selected-packages
    (quote
-    (markdown-mode neotree web-mode virtualenvwrapper eshell-prompt-extras racket-mode material-theme better-defaults))))
+    (pdf-tools dockerfile-mode markdown-mode neotree web-mode virtualenvwrapper eshell-prompt-extras racket-mode material-theme better-defaults))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
