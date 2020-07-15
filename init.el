@@ -55,6 +55,12 @@
 (when (fboundp 'windmove-default-keybindings) ;; Uses Shit+Arrow to move between windows
   (windmove-default-keybindings))
 
+;; smex set up
+(global-set-key (kbd "M-x") 'smex)
+  (global-set-key (kbd "M-X") 'smex-major-mode-commands)
+  ;; This is your old M-x.
+  (global-set-key (kbd "C-c C-c M-x") 'execute-extended-command)
+
 ;; ===================================
 ;; Virtualenv setup for emacs
 ;; ===================================
@@ -74,6 +80,11 @@
   (autoload 'epe-theme-lambda "eshell-prompt-extras")
   (setq eshell-highlight-prompt nil
         eshell-prompt-function 'epe-theme-lambda))
+
+;; m-x shell extras
+(add-to-list 'load-path "~/emacs.d/shx") ; add shx.el's directory to the load-path
+(require 'shx)  ; load shell-extras
+
 
 ;; ====================================
 ;; Org-mode setup
@@ -152,7 +163,7 @@
     ("41c8c11f649ba2832347fe16fe85cf66dafe5213ff4d659182e25378f9cfc183" default)))
  '(package-selected-packages
    (quote
-    (pdf-tools dockerfile-mode markdown-mode neotree web-mode virtualenvwrapper eshell-prompt-extras racket-mode material-theme better-defaults))))
+    (smex shx pdf-tools dockerfile-mode markdown-mode neotree web-mode virtualenvwrapper eshell-prompt-extras racket-mode material-theme better-defaults))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
