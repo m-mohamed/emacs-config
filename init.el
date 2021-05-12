@@ -44,7 +44,6 @@
 ;; ===================================
 
 (setq inhibit-startup-message t)    ;; Hide the startup message
-(load-theme 'darcula t)             ;; Load material theme
 (global-linum-mode t)               ;; Enable line numbers globally
 (add-hook 'pdf-view-mode-hook (lambda() (linum-mode -1))) ;; disable for pdfs
 (setq ring-bell-function 'ignore )  ;; silent bell on mistakes
